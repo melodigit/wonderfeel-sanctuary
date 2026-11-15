@@ -121,15 +121,11 @@ dialog::backdrop{background:rgba(29,29,27,.5)}
 .pc .x{position:absolute;top:14px;right:14px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
 
 /* film */
-.film{position:relative;min-height:clamp(380px,62vh,660px);display:grid;place-items:center;text-align:center;color:#FFFFFF;overflow:hidden;background:#3c4231}
-.film>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.film::after{content:"";position:absolute;inset:0;background:rgba(20,22,16,.2)}
-.film .in{position:relative;z-index:1;display:grid;gap:22px;justify-items:center;padding:40px 16px}
-.filmbtn{display:inline-block;border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:16px clamp(28px,4vw,48px);font-weight:700;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.025em;color:#FFFFFF;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;transition:background .2s ease,color .2s ease}
-.filmbtn:hover{background:#FFFFFF;color:var(--ink);text-decoration-color:transparent}
-.film.playing{display:block;min-height:0;aspect-ratio:16/9;max-height:100svh;background:#000}
-.film.playing::after,.film.playing>img,.film.playing .in{display:none}
-.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film{position:relative;aspect-ratio:16/9;max-height:100svh;width:100%;overflow:hidden;background:#1a1d15}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.soundbtn{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:16px;z-index:1;border:1.5px solid rgba(255,255,255,.85);background:rgba(20,22,16,.35);color:#FFFFFF;border-radius:999px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.soundbtn:hover{background:rgba(255,255,255,.9);color:var(--ink)}
+@media (max-width:640px){.film{aspect-ratio:4/5}}
 
 /* footer */
 footer{padding-block:56px 48px}
@@ -209,7 +205,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <div class="wrap">
       <div class="kicker">The Club</div>
       <h1>By invitation only</h1>
-      <p class="lead">Wonderfeel Sanctuary is open to our community. Invitations are extended by referral, to those who would like to build it with us and gather with us around the harvest table.</p>
+      <p class="lead">Wonderfeel Sanctuary is open to our community. Invitations are extended by referral, to those who would like to build it with us and join our harvest gatherings.</p>
     </div>
   </section>
 

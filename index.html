@@ -121,15 +121,11 @@ dialog::backdrop{background:rgba(29,29,27,.5)}
 .pc .x{position:absolute;top:14px;right:14px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 13px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer}
 
 /* film */
-.film{position:relative;min-height:clamp(380px,62vh,660px);display:grid;place-items:center;text-align:center;color:#FFFFFF;overflow:hidden;background:#3c4231}
-.film>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.film::after{content:"";position:absolute;inset:0;background:rgba(20,22,16,.2)}
-.film .in{position:relative;z-index:1;display:grid;gap:22px;justify-items:center;padding:40px 16px}
-.filmbtn{display:inline-block;border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:16px clamp(28px,4vw,48px);font-weight:700;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.025em;color:#FFFFFF;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;transition:background .2s ease,color .2s ease}
-.filmbtn:hover{background:#FFFFFF;color:var(--ink);text-decoration-color:transparent}
-.film.embed{display:block;min-height:0;aspect-ratio:16/9;max-height:100svh;background:#1a1d15}
-.film.embed::after,.film.embed .in{display:none}
-.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1}
+.film{position:relative;aspect-ratio:16/9;max-height:100svh;width:100%;overflow:hidden;background:#1a1d15}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.soundbtn{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:16px;z-index:1;border:1.5px solid rgba(255,255,255,.85);background:rgba(20,22,16,.35);color:#FFFFFF;border-radius:999px;padding:9px 16px;font:inherit;font-size:13px;font-weight:600;letter-spacing:.02em;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.soundbtn:hover{background:rgba(255,255,255,.9);color:var(--ink)}
+@media (max-width:640px){.film{aspect-ratio:4/5}}
 
 /* footer */
 footer{padding-block:56px 48px}
@@ -260,11 +256,8 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   </section>
 
   <section class="film" id="film" aria-label="The film">
-    <img src="images/daisies.jpg" alt="A meadow of white daisies" loading="lazy">
-    <div class="in">
-      <a class="filmbtn" id="playFilm" href="https://vimeo.com/1224129167" target="_blank" rel="noopener">Watch the film</a>
-      <div class="eyebrow">Wonderfeel Sanctuary</div>
-    </div>
+    <video id="filmVideo" src="images/film.mp4" poster="images/film-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Wonderfeel Sanctuary film"></video>
+    <button type="button" class="soundbtn" id="soundBtn" aria-pressed="false">Sound on</button>
   </section>
 </main>
 
@@ -287,13 +280,10 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   map.forEach((a,id)=>{const el=document.getElementById(id);if(el)io.observe(el)});
   new IntersectionObserver(es=>{if(es[0].isIntersecting)set("")},{threshold:.6}).observe(document.querySelector(".hero"));
 }catch(_){}
-try{const f=document.getElementById("film");if(f&&/^https?:$/.test(location.protocol)&&!location.hostname.endsWith("claudeusercontent.com")){
-  f.classList.add("embed");let on=false;
-  const start=()=>{if(on)return;on=true;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.appendChild(i);
-    const go=()=>{try{const pl=new Vimeo.Player(i);pl.ready().then(()=>pl.setVolume(0)).then(()=>pl.play()).catch(()=>{});
-      new IntersectionObserver(es=>{es[0].isIntersecting?pl.play().catch(()=>{}):pl.pause().catch(()=>{})},{threshold:.25}).observe(f)}catch(_){}};
-    if(window.Vimeo&&Vimeo.Player)go();else{const sc=document.createElement("script");sc.src="https://player.vimeo.com/api/player.js";sc.onload=go;document.head.appendChild(sc)}};
-  if("IntersectionObserver" in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){start();o.disconnect()}},{rootMargin:"200px 0px"}).observe(f)}else start();}}catch(_){}
+try{const v=document.getElementById("filmVideo"),sb=document.getElementById("soundBtn");if(v){
+  v.muted=true;const tryPlay=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>{})};
+  if("IntersectionObserver" in window){new IntersectionObserver(es=>{es[0].isIntersecting?tryPlay():v.pause()},{threshold:.2}).observe(v)}else tryPlay();
+  if(sb)sb.addEventListener("click",()=>{v.muted=!v.muted;if(!v.muted){v.volume=1;tryPlay()}sb.textContent=v.muted?"Sound on":"Sound off";sb.setAttribute("aria-pressed",String(!v.muted))});}}catch(_){}
 })();
 </script>
 </body>
