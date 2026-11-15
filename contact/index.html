@@ -78,6 +78,9 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .tile:nth-child(-n+3){grid-column:span 4;height:clamp(280px,27vw,380px)}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .tile:hover img{transform:scale(1.04)}
+.tlink{display:block;text-decoration:none;color:#FFFFFF}
+.tile .go{display:inline-block;margin-top:10px;font-style:normal;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-bottom:1.5px solid rgba(255,255,255,.85);padding-bottom:2px}
+.tlink:hover .go{border-bottom-color:#FFFFFF}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.6) 100%)}
 .tile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:16px 18px 18px}
 .tile b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em}
@@ -216,7 +219,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
           <p>My name is <input id="fName" name="name" autocomplete="name" placeholder="your name" aria-label="Your name" required><span class="pt">,</span> and I live in <input id="fCity" name="based_in" autocomplete="address-level2" placeholder="city" aria-label="City"><span class="pt">.</span></p>
           <p><input id="fRef" name="referred_by" placeholder="a friend" aria-label="Who referred you"> introduced me to the Sanctuary.</p>
           <p>What I would bring to the table:</p>
-          <textarea id="fWhy" name="message" placeholder="a craft, an idea, a recipe, a story…" aria-label="What you would bring to the table"></textarea>
+          <textarea id="fWhy" name="message" aria-label="What you would bring to the table"></textarea>
           <p>You can find me at <input class="w" id="fSocial" name="social" placeholder="LinkedIn or Instagram" aria-label="LinkedIn or Instagram"><span class="pt">,</span></p>
           <p>and write back to me at <input class="w" id="fEmail" name="email" type="email" autocomplete="email" placeholder="email" aria-label="Email" required><span class="pt">.</span></p>
           <p class="sign">With warmth.</p><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
