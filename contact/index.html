@@ -157,36 +157,34 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 .kicker{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFFFFF}
 .clubhero h1{color:#FFFFFF;font-weight:800;font-size:clamp(44px,7vw,100px);line-height:.95;letter-spacing:-.045em;margin:16px 0 0;max-width:12ch}
 .clubhero .lead{margin:22px 0 0;max-width:46ch;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,25px);line-height:1.45;color:rgba(255,255,255,.94)}
-.perks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,64px);margin-top:clamp(36px,5vw,64px);border-top:1px solid rgba(255,255,255,.45);padding-top:clamp(20px,2.6vw,28px);max-width:900px}
-@media (max-width:640px){.perks{grid-template-columns:minmax(0,1fr)}}
-.perk b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em;color:#FFFFFF}
-.perk span{display:block;margin-top:6px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.86)}
-.applyband{background:var(--paper);padding-block:clamp(64px,9vw,120px)}
-.agrid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(36px,6vw,96px);align-items:start}
-@media (max-width:860px){.agrid{grid-template-columns:minmax(0,1fr)}}
-.applyband .kicker{color:var(--moss)}
-.applyband h2{margin-top:14px;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.02;letter-spacing:-.035em}
-.applyband .aside{margin:18px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.9vw,21px);line-height:1.5;color:var(--muted);max-width:30ch}
-.q{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 12px;padding:22px 0;border-bottom:1px solid var(--line)}
-.q:first-child{padding-top:0}
-.q .n{grid-row:span 3;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--muted);padding-top:6px}
-.q label{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.1vw,24px);line-height:1.3;color:var(--ink)}
-.q small{font-size:13px;color:var(--muted)}
-.q input,.q textarea{width:100%;margin-top:8px;border:0;border-bottom:1px solid #A9A7A0;background:transparent;color:var(--ink);font:inherit;font-size:17px;padding:8px 0;border-radius:0}
-.q textarea{min-height:84px;resize:vertical}
-.q input:focus,.q textarea:focus{outline:none;border-bottom-color:var(--ink)}
-.q input::placeholder,.q textarea::placeholder{color:#A9A7A0}
-.qrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
-@media (max-width:560px){.qrow{grid-template-columns:minmax(0,1fr)}}
-.submitrow{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:30px}
-.send{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:14px 28px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s ease,color .2s ease}
-.send:hover{background:var(--ink);color:var(--ground)}
-.send:disabled{border-color:var(--line);color:var(--muted);background:transparent;cursor:default}
-.fnote{margin:0;font-size:13.5px;color:var(--muted)}
-.fdone{display:none}
+.letterband{position:relative;overflow:hidden;background:var(--ground);padding-block:clamp(64px,9vw,120px)}
+.letterband::before{content:"";position:absolute;inset:0;background:url(../images/contours.svg) center/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 55% 70% at 100% 0%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%),radial-gradient(ellipse 45% 60% at 0% 100%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%);mask-image:radial-gradient(ellipse 55% 70% at 100% 0%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%),radial-gradient(ellipse 45% 60% at 0% 100%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%);pointer-events:none}
+.letterband>.wrap{position:relative;z-index:1}
+.lhead{text-align:center;max-width:640px;margin:0 auto clamp(32px,4vw,48px)}
+.lhead .kicker{color:var(--moss)}
+.lhead h2{margin-top:12px;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1.02;letter-spacing:-.035em}
+.note{max-width:760px;margin:0 auto;background:#FFFDF8;border:1px solid #E4E0D6;border-radius:6px;box-shadow:0 1px 2px rgba(29,29,27,.04),0 18px 50px rgba(29,29,27,.07);padding:clamp(28px,5vw,64px) clamp(22px,5vw,72px)}
+.note form{font-family:var(--serif);font-size:clamp(19px,2.1vw,24px);line-height:2.1;color:var(--ink)}
+.note p{margin:0 0 6px}
+.note .dear{font-style:italic;margin-bottom:14px}
+.note input,.note textarea{font:inherit;font-style:italic;color:var(--moss);background:transparent;border:0;border-bottom:1.5px solid #CFCCC4;border-radius:0;padding:0 4px;margin:0 2px;transition:border-color .15s ease}
+.note input{width:13ch;max-width:100%}
+.note input.w{width:17ch}
+.note input:focus,.note textarea:focus{outline:none;border-bottom-color:var(--moss)}
+.note input::placeholder,.note textarea::placeholder{color:#B9B5AA;font-style:italic}
+.note textarea{display:block;width:100%;min-height:96px;margin:4px 0 10px;line-height:1.7;resize:vertical;border:1.5px solid #E4E0D6;border-radius:6px;padding:10px 14px}
+.note .sign{font-style:italic;margin-top:14px}
+.sendrow{display:flex;justify-content:space-between;align-items:center;gap:14px 18px;flex-wrap:wrap;margin-top:clamp(24px,3vw,36px);padding-top:clamp(20px,2.6vw,28px);border-top:1px solid #ECE8DF;font-family:var(--display);font-size:14px;line-height:1.5}
+.sendrow small{color:var(--muted);font-size:13.5px}
+.send{border:0;background:var(--ink);color:var(--ground);border-radius:999px;padding:14px 26px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s ease}
+.send:hover{background:var(--moss)}
+.send:disabled{background:#E4E0D6;color:var(--muted);cursor:default}
+.fnote{margin:0;font-family:var(--display);font-size:13.5px;line-height:1.5;color:var(--muted)}
+.fdone{display:none;text-align:center;padding:20px 0}
 .fdone h3{margin:0;font-weight:800;font-size:clamp(28px,3vw,38px);letter-spacing:-.03em;color:var(--ink)}
 .fdone p{margin:12px 0 0;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted)}
-.applywrap.sent form{display:none}.applywrap.sent .fdone{display:block}
+.note.sent form{display:none}.note.sent .fdone{display:block}
+@media (max-width:560px){.note input,.note input.w{width:100%;display:block;margin:2px 0 12px}.note form{line-height:1.7}.note .pt{display:none}}
 @media (max-width:719px){.nav{display:flex;gap:14px}.nav a{font-size:10.5px;letter-spacing:.12em}.top .wrap{padding-block:16px}.top .wrap.sub .nav{display:none}}
 </style>
 
@@ -205,34 +203,27 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <div class="wrap">
       <div class="kicker">The Club</div>
       <h1>By invitation only</h1>
-      <p class="lead">Wonderfeel Sanctuary is not open to the public yet. Invitations are extended by referral to a small circle of founders, artists, scientists and thinkers.</p>
-      <div class="perks">
-        <div class="perk"><b>Harvest Gatherings</b><span>Three times a year, a small circle invited by referral gathers at the long table to pick, cook and share what the land has given.</span></div>
-        <div class="perk"><b>Seasonal Letters</b><span>A few letters a year with first word on every harvest, from the first persimmons to the new olive oil.</span></div>
-      </div>
+      <p class="lead">Wonderfeel Sanctuary is not open to the public yet. Invitations are extended by referral, to those who would like to build it with us and gather with us around the harvest table.</p>
     </div>
   </section>
 
-  <section class="applyband" id="apply">
+  <section class="letterband" id="apply">
     <div class="wrap">
-      <div class="agrid">
-        <div>
-          <div class="kicker">Apply</div>
-          <h2>Request an invitation</h2>
-          <p class="aside">Every request is read personally. If there is a fit, we will be in touch.</p>
-        </div>
-        <div class="applywrap">
-          <form id="joinForm" novalidate>
-            <div class="q"><span class="n">01</span><label for="fName">Your name</label><input id="fName" name="name" autocomplete="name" required></div>
-            <div class="q"><span class="n">02</span><label for="fEmail">How can we reach you?</label><div class="qrow"><input id="fEmail" name="email" type="email" autocomplete="email" placeholder="Email" required><input id="fCity" name="based_in" autocomplete="address-level2" placeholder="City"></div></div>
-            <div class="q"><span class="n">03</span><label for="fWork">What do you do?</label><input id="fWork" name="work" placeholder="Your work, your craft, your current project"></div>
-            <div class="q"><span class="n">04</span><label for="fRef">Who referred you?</label><small>The friend who introduced you to the Sanctuary.</small><input id="fRef" name="referred_by"></div>
-            <div class="q"><span class="n">05</span><label for="fSocial">Where can we find you?</label><input id="fSocial" name="social" placeholder="Instagram, LinkedIn or a website"></div>
-            <div class="q"><span class="n">06</span><label for="fWhy">What would you bring to the table?</label><textarea id="fWhy" name="message"></textarea></div>
-            <div class="submitrow"><button class="send" type="submit" id="fSend">Request an invitation →</button><p class="fnote" id="fNote" role="status"></p></div>
-          </form>
-          <div class="fdone"><h3>Thank you.</h3><p>Your request is with us. We will be in touch.</p></div>
-        </div>
+      <div class="lhead"><div class="kicker">A note to the Sanctuary</div><h2>Request an invitation</h2></div>
+      <div class="note">
+        <form id="joinForm" novalidate>
+          <p class="dear">Dear Wonderfeel,</p>
+          <p>My name is <input id="fName" name="name" autocomplete="name" placeholder="your name" aria-label="Your name" required><span class="pt">,</span> and I live in <input id="fCity" name="based_in" autocomplete="address-level2" placeholder="city" aria-label="City"><span class="pt">.</span></p>
+          <p>I spend my days <input class="w" id="fWork" name="work" placeholder="what you do" aria-label="What you do"><span class="pt">.</span></p>
+          <p><input id="fRef" name="referred_by" placeholder="a friend" aria-label="Who referred you"> introduced me to the Sanctuary.</p>
+          <p>What I would bring to the table:</p>
+          <textarea id="fWhy" name="message" placeholder="a craft, an idea, a recipe, a story…" aria-label="What you would bring to the table"></textarea>
+          <p>You can find me at <input class="w" id="fSocial" name="social" placeholder="Instagram or website" aria-label="Instagram, LinkedIn or website"><span class="pt">,</span></p>
+          <p>and write back to me at <input class="w" id="fEmail" name="email" type="email" autocomplete="email" placeholder="email" aria-label="Email" required><span class="pt">.</span></p>
+          <p class="sign">With warmth.</p>
+          <div class="sendrow"><small>Every note is read personally.</small><button class="send" type="submit" id="fSend">Send my note →</button><p class="fnote" id="fNote" role="status"></p></div>
+        </form>
+        <div class="fdone"><h3>Thank you.</h3><p>Your note is with us. We will be in touch.</p></div>
       </div>
     </div>
   </section>
@@ -247,6 +238,6 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <small>© <span id="yr">2026</span> Wonderfeel Sanctuary</small>
   </div>
 </footer>
-<script>(function(){const EP="";const f=document.getElementById("joinForm"),btn=document.getElementById("fSend"),note=document.getElementById("fNote");if(!EP){btn.disabled=true;btn.textContent="Requests open soon";}f.addEventListener("submit",async e=>{e.preventDefault();if(!EP)return;const name=f.name.value.trim(),email=f.email.value.trim();if(!name||!/^\S+@\S+\.\S+$/.test(email)){note.textContent="Please add your name and a valid email.";return}btn.disabled=true;btn.textContent="Sending…";note.textContent="";const fd=new FormData(f);fd.set("_subject","Invitation request: "+name);try{const r=await fetch(EP,{method:"POST",body:fd,headers:{Accept:"application/json"}});if(!r.ok)throw 0;document.querySelector(".applywrap").classList.add("sent")}catch(_){btn.disabled=false;btn.textContent="Request an invitation →";note.textContent="Something went wrong. Please try again in a moment."}});})();</script>
+<script>(function(){const EP="";const f=document.getElementById("joinForm"),btn=document.getElementById("fSend"),note=document.getElementById("fNote");if(!EP){btn.disabled=true;btn.textContent="Requests open soon";}f.addEventListener("submit",async e=>{e.preventDefault();if(!EP)return;const name=f.name.value.trim(),email=f.email.value.trim();if(!name||!/^\S+@\S+\.\S+$/.test(email)){note.textContent="Please add your name and a valid email.";return}btn.disabled=true;btn.textContent="Sending…";note.textContent="";const fd=new FormData(f);fd.set("_subject","Invitation request: "+name);try{const r=await fetch(EP,{method:"POST",body:fd,headers:{Accept:"application/json"}});if(!r.ok)throw 0;document.querySelector(".note").classList.add("sent")}catch(_){btn.disabled=false;btn.textContent="Send my note →";note.textContent="Something went wrong. Please try again in a moment."}});})();</script>
 </body>
 </html>
