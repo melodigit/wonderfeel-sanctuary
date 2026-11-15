@@ -11,7 +11,7 @@
 <meta name="description" content="Wonderfeel Sanctuary: 70 acres in Sonoma, California, where you can live longevity every day.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
 <style>
 :root{
   --ground:#F2F1EC; --paper:#FAF9F5; --ink:#1D1D1B; --body:#33322F; --muted:#5E5C57; --line:#CFCCC4;
@@ -40,12 +40,12 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance}
 @media (max-width:719px){.nav{display:none}}
 
 /* hero */
-.hero{position:relative;min-height:min(100svh,940px);display:flex;align-items:flex-end;color:#FFFFFF;overflow:hidden;background:#2b3021}
+.hero{position:relative;min-height:min(92svh,860px);display:flex;align-items:flex-end;color:#FFFFFF;overflow:hidden;background:#2b3021}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,12,.45) 0%,rgba(15,18,12,.05) 30%,rgba(15,18,12,.1) 55%,rgba(15,18,12,.62) 100%)}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-block:0 clamp(44px,9vh,96px)}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
-.hero h1{color:#FFFFFF;font-weight:800;font-size:clamp(58px,11.5vw,168px);line-height:.9;letter-spacing:-.045em;margin:16px 0 22px;max-width:9ch}
+.hero h1{color:#FFFFFF;font-weight:800;font-size:clamp(52px,8.2vw,124px);line-height:.92;letter-spacing:-.045em;margin:16px 0 22px;max-width:9ch}
 .hero .sub{font-size:clamp(20px,2.3vw,28px);line-height:1.3;margin:0;color:rgba(255,255,255,.95)}
 
 /* sections */
@@ -65,15 +65,8 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .landfig::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(10,14,10,.55) 100%)}
 .landfig figcaption{position:absolute;left:clamp(18px,3vw,36px);right:clamp(18px,3vw,36px);bottom:clamp(16px,2.6vw,30px);z-index:1;color:#FFFFFF;font-size:clamp(18px,2vw,24px);line-height:1.35;max-width:34ch}
 @media (max-width:760px){.landfig img{aspect-ratio:4/3}}
-.lstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--ink)}
-.ls{padding:26px 22px 28px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);min-width:0}
-.ls:nth-child(4n){border-right:0}
-.ls:nth-child(4n+1){padding-left:0}
-.ls b{display:block;font-weight:800;font-size:clamp(44px,5.4vw,72px);line-height:.92;letter-spacing:-.045em;color:var(--ink)}
-.ls b small{font-size:.42em;font-weight:700;letter-spacing:-.01em;margin-left:5px}
-.ls .l{display:block;margin-top:14px;font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.005em}
-.ls .d{display:block;margin-top:2px;font-size:14px;line-height:1.4;color:var(--muted)}
-@media (max-width:760px){.lstats{grid-template-columns:repeat(2,minmax(0,1fr))}.ls{padding:22px 16px 24px}.ls:nth-child(4n){border-right:1px solid var(--line)}.ls:nth-child(2n){border-right:0}.ls:nth-child(4n+1){padding-left:16px}.ls:nth-child(2n+1){padding-left:0}}
+.landstory{margin:clamp(36px,5vw,64px) 0 0;max-width:900px;font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.7vw,36px);line-height:1.42;letter-spacing:-.005em;color:var(--body);text-wrap:pretty}
+.landstory .hl{font-family:var(--display);font-weight:700;font-size:.86em;letter-spacing:-.015em;color:var(--ink);white-space:nowrap;background:linear-gradient(transparent 62%,rgba(140,198,63,.38) 62%,rgba(140,198,63,.38) 92%,transparent 92%);padding:0 .08em}
 
 /* a day */
 .day{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(clamp(230px,20vw,290px),auto);gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -86,7 +79,7 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .tile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:16px 18px 18px}
 .tile b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .tile span{display:block;margin-top:3px;font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.88)}
-@media (max-width:1000px){.day{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}.tile{min-height:230px}.day .intro{grid-column:1/-1;padding-block:28px}}
+@media (max-width:1000px){.day .tile:last-child{grid-column:1/-1}.day{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}.tile{min-height:230px}.day .intro{grid-column:1/-1;padding-block:28px}}
 @media (max-width:479px){.day{grid-template-columns:minmax(0,1fr)}.tile{min-height:250px}}
 
 /* harvest */
@@ -184,16 +177,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
         <img src="images/land-lake.jpg" alt="Two white chairs at the end of the dock on the lake, with redwoods reflected in the water" loading="lazy">
         <figcaption class="it">Seasonal creeks run through it, and a quiet lake sits at its heart.</figcaption>
       </figure>
-      <div class="lstats">
-        <div class="ls"><b>70</b><span class="l">Acres</span><span class="d">in west Sonoma</span></div>
-        <div class="ls"><b>400+</b><span class="l">Fruit trees</span><span class="d">across the orchards</span></div>
-        <div class="ls"><b>128</b><span class="l">Fruit varieties</span><span class="d">from apples to persimmons</span></div>
-        <div class="ls"><b>50+</b><span class="l">Organic crops</span><span class="d">in the vegetable gardens</span></div>
-        <div class="ls"><b>3.5<small>mi</small></b><span class="l">Forest trails</span><span class="d">through the redwoods</span></div>
-        <div class="ls"><b>200+</b><span class="l">Flower species</span><span class="d">in the zen gardens</span></div>
-        <div class="ls"><b>30+</b><span class="l">Exotic plants</span><span class="d">in the greenhouse</span></div>
-        <div class="ls"><b>50+</b><span class="l">Bird species</span><span class="d">at home on the land</span></div>
-      </div>
+      <p class="landstory"><span class="hl">70 acres</span> of west Sonoma, where <span class="hl">400+ fruit trees</span> and <span class="hl">128 varieties</span> grow, from Gravenstein apples to persimmons. <span class="hl">50+ organic crops</span> fill the vegetable gardens, <span class="hl">200+ flower species</span> bloom in the zen gardens and <span class="hl">30+ exotic plants</span> live in the greenhouse. <span class="hl">3.5 miles</span> of trails wind through the redwoods, and <span class="hl">50+ bird species</span> call it home.</p>
     </div>
   </section>
 
@@ -239,7 +223,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
       <div class="fm">Wonderfeel Sanctuary</div>
       <p class="fl">The Longevity Zone · 70 acres in Sonoma, California</p>
     </div>
-    <small>© <span id="yr">2026</span> Wonderfeel Sanctuary<br>Willow photo: Karl Doyle Photography</small>
+    <small>© <span id="yr">2026</span> Wonderfeel Sanctuary</small>
   </div>
 </footer>
 </body>
