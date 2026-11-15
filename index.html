@@ -127,6 +127,9 @@ dialog::backdrop{background:rgba(29,29,27,.5)}
 .film .in{position:relative;z-index:1;display:grid;gap:22px;justify-items:center;padding:40px 16px}
 .filmbtn{display:inline-block;border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:16px clamp(28px,4vw,48px);font-weight:700;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.025em;color:#FFFFFF;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;transition:background .2s ease,color .2s ease}
 .filmbtn:hover{background:#FFFFFF;color:var(--ink);text-decoration-color:transparent}
+.film.playing{display:block;min-height:0;aspect-ratio:16/9;max-height:100svh;background:#000}
+.film.playing::after,.film.playing>img,.film.playing .in{display:none}
+.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
 /* footer */
 footer{padding-block:56px 48px}
@@ -158,7 +161,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 .clubhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,15,10,.55) 0%,rgba(12,15,10,.25) 30%,rgba(12,15,10,.45) 58%,rgba(12,15,10,.82) 100%)}
 .clubhero .wrap{position:relative;z-index:1;width:100%;padding-block:120px clamp(40px,7vh,72px)}
 .kicker{font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#FFFFFF}
-.clubhero h1{color:#FFFFFF;font-weight:800;font-size:clamp(44px,7vw,100px);line-height:.95;letter-spacing:-.045em;margin:16px 0 0;max-width:12ch}
+.clubhero h1{color:#FFFFFF;font-weight:800;font-size:clamp(36px,7vw,100px);line-height:.95;letter-spacing:-.045em;margin:16px 0 0;white-space:nowrap}
 .clubhero .lead{margin:22px 0 0;max-width:46ch;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.1vw,25px);line-height:1.45;color:rgba(255,255,255,.94)}
 .letterband{position:relative;overflow:hidden;background:var(--ground);padding-block:clamp(64px,9vw,120px)}
 .letterband::before{content:"";position:absolute;inset:0;background:url(../images/contours.svg) center/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 55% 70% at 100% 0%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%),radial-gradient(ellipse 45% 60% at 0% 100%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%);mask-image:radial-gradient(ellipse 55% 70% at 100% 0%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%),radial-gradient(ellipse 45% 60% at 0% 100%,#000 0%,rgba(0,0,0,.6) 40%,transparent 75%);pointer-events:none}
@@ -259,7 +262,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   <section class="film" id="film" aria-label="The film">
     <img src="images/daisies.jpg" alt="A meadow of white daisies" loading="lazy">
     <div class="in">
-      <a class="filmbtn" href="https://vimeo.com/1224129167" target="_blank" rel="noopener">Watch the film</a>
+      <a class="filmbtn" id="playFilm" href="https://vimeo.com/1224129167" target="_blank" rel="noopener">Watch the film</a>
       <div class="eyebrow">Wonderfeel Sanctuary</div>
     </div>
   </section>
@@ -283,7 +286,9 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)set(e.target.id)})},{rootMargin:"-45% 0px -50% 0px"});
   map.forEach((a,id)=>{const el=document.getElementById(id);if(el)io.observe(el)});
   new IntersectionObserver(es=>{if(es[0].isIntersecting)set("")},{threshold:.6}).observe(document.querySelector(".hero"));
-}catch(_){}})();
+}catch(_){}
+try{const pb=document.getElementById("playFilm");if(pb)pb.addEventListener("click",e=>{if(location.hostname.endsWith("claudeusercontent.com")||!/^https?:$/.test(location.protocol))return;e.preventDefault();const f=document.getElementById("film");if(f.classList.contains("playing"))return;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.classList.add("playing");f.appendChild(i);f.scrollIntoView({behavior:"smooth",block:"center"})})}catch(_){}
+})();
 </script>
 </body>
 </html>
