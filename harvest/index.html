@@ -401,7 +401,7 @@ button.mrow:hover{background:var(--paper)}
 
   <section class="health" aria-labelledby="hTitle">
     <h2 id="hTitle">How the Sanctuary nourishes you in November</h2>
-    <p class="sub">Ready to pick this month from plants we already grow. Tap a benefit to see it in the table.</p>
+    <p class="sub" id="hSub">Everything here is growing on the land and ready to pick right now. Between them, they look after all 12 areas of your health. Tap one to see what helps.</p>
     <div class="hgrid" id="hgrid"></div>
   </section>
 
@@ -532,6 +532,8 @@ function renderHealth(){
   $("#hTitle").textContent="How the Sanctuary nourishes you in "+MF[month-1];
   if(!loaded){$("#hgrid").innerHTML="";return}
   const ours=plants.filter(p=>have(p)&&(p.benefits||[]).length);
+  const covered=BEN.filter(b=>ours.some(p=>p.benefits.includes(b)&&(p.harvest||[]).includes(month))).length;
+  $("#hSub").textContent=`Everything here is growing on the land and ready to pick right now. Between them, they look after ${covered===BEN.length?"all 12":covered+" of the 12"} areas of your health. Tap one to see what helps.`;
   $("#hgrid").innerHTML=BEN.map(b=>{
     const tagged=ours.filter(p=>p.benefits.includes(b));
     const now=tagged.filter(p=>(p.harvest||[]).includes(month)).map(p=>p.name).sort();
