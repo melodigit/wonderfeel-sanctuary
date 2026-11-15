@@ -289,7 +289,10 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 }catch(_){}
 try{const f=document.getElementById("film");if(f&&/^https?:$/.test(location.protocol)&&!location.hostname.endsWith("claudeusercontent.com")){
   f.classList.add("embed");let on=false;
-  const start=()=>{if(on)return;on=true;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.appendChild(i)};
+  const start=()=>{if(on)return;on=true;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.appendChild(i);
+    const go=()=>{try{const pl=new Vimeo.Player(i);pl.ready().then(()=>pl.setVolume(0)).then(()=>pl.play()).catch(()=>{});
+      new IntersectionObserver(es=>{es[0].isIntersecting?pl.play().catch(()=>{}):pl.pause().catch(()=>{})},{threshold:.25}).observe(f)}catch(_){}};
+    if(window.Vimeo&&Vimeo.Player)go();else{const sc=document.createElement("script");sc.src="https://player.vimeo.com/api/player.js";sc.onload=go;document.head.appendChild(sc)}};
   if("IntersectionObserver" in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){start();o.disconnect()}},{rootMargin:"200px 0px"}).observe(f)}else start();}}catch(_){}
 })();
 </script>
