@@ -127,9 +127,9 @@ dialog::backdrop{background:rgba(29,29,27,.5)}
 .film .in{position:relative;z-index:1;display:grid;gap:22px;justify-items:center;padding:40px 16px}
 .filmbtn{display:inline-block;border:2px solid rgba(255,255,255,.95);border-radius:999px;padding:16px clamp(28px,4vw,48px);font-weight:700;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.025em;color:#FFFFFF;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px;transition:background .2s ease,color .2s ease}
 .filmbtn:hover{background:#FFFFFF;color:var(--ink);text-decoration-color:transparent}
-.film.playing{display:block;min-height:0;aspect-ratio:16/9;max-height:100svh;background:#000}
-.film.playing::after,.film.playing>img,.film.playing .in{display:none}
-.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.film.embed{display:block;min-height:0;aspect-ratio:16/9;max-height:100svh;background:#1a1d15}
+.film.embed::after,.film.embed .in{display:none}
+.film iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1}
 
 /* footer */
 footer{padding-block:56px 48px}
@@ -287,7 +287,10 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   map.forEach((a,id)=>{const el=document.getElementById(id);if(el)io.observe(el)});
   new IntersectionObserver(es=>{if(es[0].isIntersecting)set("")},{threshold:.6}).observe(document.querySelector(".hero"));
 }catch(_){}
-try{const pb=document.getElementById("playFilm");if(pb)pb.addEventListener("click",e=>{if(location.hostname.endsWith("claudeusercontent.com")||!/^https?:$/.test(location.protocol))return;e.preventDefault();const f=document.getElementById("film");if(f.classList.contains("playing"))return;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.classList.add("playing");f.appendChild(i);f.scrollIntoView({behavior:"smooth",block:"center"})})}catch(_){}
+try{const f=document.getElementById("film");if(f&&/^https?:$/.test(location.protocol)&&!location.hostname.endsWith("claudeusercontent.com")){
+  f.classList.add("embed");let on=false;
+  const start=()=>{if(on)return;on=true;const i=document.createElement("iframe");i.src="https://player.vimeo.com/video/1224129167?autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1";i.allow="autoplay; fullscreen; picture-in-picture";i.allowFullscreen=true;i.title="Wonderfeel Sanctuary film";f.appendChild(i)};
+  if("IntersectionObserver" in window){new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){start();o.disconnect()}},{rootMargin:"200px 0px"}).observe(f)}else start();}}catch(_){}
 })();
 </script>
 </body>
