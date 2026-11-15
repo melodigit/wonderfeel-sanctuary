@@ -260,7 +260,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   </section>
 
   <section class="film" id="film" aria-label="The film">
-    <video id="filmVideo" src="images/film.mp4" poster="images/film-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Wonderfeel Sanctuary film"></video>
+    <video id="filmVideo" src="images/film.mp4" poster="images/film-poster.jpg" muted loop playsinline preload="metadata" aria-label="Wonderfeel Sanctuary film"></video>
     <div class="filmctl"><button type="button" class="soundbtn" id="pauseBtn" aria-pressed="false">Pause</button><button type="button" class="soundbtn" id="soundBtn" aria-pressed="false">Sound on</button></div>
   </section>
 </main>
@@ -285,12 +285,18 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   new IntersectionObserver(es=>{if(es[0].isIntersecting)set("")},{threshold:.6}).observe(document.querySelector(".hero"));
 }catch(_){}
 try{const v=document.getElementById("filmVideo"),sb=document.getElementById("soundBtn"),pb=document.getElementById("pauseBtn");if(v){
-  let userPaused=false;
-  v.muted=true;const tryPlay=()=>{if(userPaused)return;const p=v.play();if(p&&p.catch)p.catch(()=>{})};
-  if("IntersectionObserver" in window){new IntersectionObserver(es=>{es[0].isIntersecting?tryPlay():v.pause()},{threshold:.2}).observe(v)}else tryPlay();
-  const togglePause=()=>{userPaused=!userPaused;if(userPaused)v.pause();else tryPlay();if(pb){pb.textContent=userPaused?"Play":"Pause";pb.setAttribute("aria-pressed",String(userPaused))}};
-  if(pb)pb.addEventListener("click",togglePause);v.addEventListener("click",togglePause);
-  if(sb)sb.addEventListener("click",()=>{v.muted=!v.muted;if(!v.muted){v.volume=1;tryPlay()}sb.textContent=v.muted?"Sound on":"Sound off";sb.setAttribute("aria-pressed",String(!v.muted))});}}catch(_){}
+  let userPaused=false,userMuted=false,inView=false,justUnmuted=false;
+  const label=()=>{if(sb){sb.textContent=v.muted?"Sound on":"Sound off";sb.setAttribute("aria-pressed",String(!v.muted))}};
+  const play=()=>{if(userPaused||!inView)return;
+    if(!userMuted){v.muted=false;v.volume=1}
+    const p=v.play();if(p&&p.catch)p.catch(()=>{v.muted=true;label();const q=v.play();if(q&&q.catch)q.catch(()=>{})});label()};
+  const unmuteOnGesture=()=>{if(userMuted||!v.muted)return;justUnmuted=true;setTimeout(()=>{justUnmuted=false},600);v.muted=false;v.volume=1;if(inView&&!userPaused){const p=v.play();if(p&&p.catch)p.catch(()=>{})}label()};
+  ["pointerdown","keydown","touchend"].forEach(t=>document.addEventListener(t,e=>{if(e.target.closest&&e.target.closest("#soundBtn"))return;unmuteOnGesture()},{passive:true}));
+  if("IntersectionObserver" in window){new IntersectionObserver(es=>{inView=es[0].isIntersecting;inView?play():v.pause()},{threshold:.2}).observe(v)}else{inView=true;play()}
+  const togglePause=()=>{userPaused=!userPaused;if(userPaused)v.pause();else play();if(pb){pb.textContent=userPaused?"Play":"Pause";pb.setAttribute("aria-pressed",String(userPaused))}};
+  if(pb)pb.addEventListener("click",togglePause);v.addEventListener("click",()=>{if(justUnmuted){justUnmuted=false;return}togglePause()});
+  if(sb)sb.addEventListener("click",()=>{if(v.muted){userMuted=false;v.muted=false;v.volume=1;if(inView&&!userPaused){const p=v.play();if(p&&p.catch)p.catch(()=>{})}}else{userMuted=true;v.muted=true}label()});
+  label();}}catch(_){}
 })();
 </script>
 </body>
