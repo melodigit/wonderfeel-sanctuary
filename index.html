@@ -56,17 +56,14 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .sh .it{font-size:clamp(19px,2vw,23px);line-height:1.4;color:var(--muted);max-width:44ch}
 
 /* the land */
-.landhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 64px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
-.landhead h2{font-weight:800;font-size:clamp(38px,5.6vw,72px);line-height:.98;letter-spacing:-.035em}
-.landhead .it{margin:0;font-size:clamp(19px,2vw,23px);line-height:1.4;color:var(--muted);max-width:36ch}
-@media (max-width:760px){.landhead{grid-template-columns:minmax(0,1fr)}}
-.landfig{position:relative;margin:0;overflow:hidden;background:#2f3a2a}
-.landfig img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:50% 58%}
-.landfig::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(10,14,10,.55) 100%)}
-.landfig figcaption{position:absolute;left:clamp(18px,3vw,36px);right:clamp(18px,3vw,36px);bottom:clamp(16px,2.6vw,30px);z-index:1;color:#FFFFFF;font-size:clamp(18px,2vw,24px);line-height:1.35;max-width:34ch}
-@media (max-width:760px){.landfig img{aspect-ratio:4/3}}
-.landstory{margin:clamp(36px,5vw,64px) 0 0;max-width:900px;font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.7vw,36px);line-height:1.42;letter-spacing:-.005em;color:var(--body);text-wrap:pretty}
-.landstory .hl{font-family:var(--display);font-weight:700;font-size:.86em;letter-spacing:-.015em;color:var(--ink);white-space:nowrap;background:linear-gradient(transparent 62%,rgba(140,198,63,.38) 62%,rgba(140,198,63,.38) 92%,transparent 92%);padding:0 .08em}
+.landhead{text-align:center;max-width:820px;margin:0 auto clamp(48px,6vw,80px)}
+.landhead h2{font-weight:800;font-size:clamp(36px,5.2vw,68px);line-height:1;letter-spacing:-.035em;text-wrap:balance}
+.landhead .it{margin:20px auto 0;font-size:clamp(19px,2vw,23px);line-height:1.45;color:var(--muted);max-width:42ch}
+.lnums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(40px,5vw,64px) clamp(20px,3vw,40px);text-align:center;max-width:1080px;margin:0 auto}
+.ln b{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(52px,6.4vw,88px);line-height:.95;letter-spacing:-.02em;color:var(--moss)}
+.ln .l{display:block;margin-top:12px;font-size:16px;font-weight:700;color:var(--ink)}
+.ln .d{display:block;margin-top:3px;font-size:14px;line-height:1.4;color:var(--muted)}
+@media (max-width:760px){.lnums{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* a day */
 .day{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(clamp(230px,20vw,290px),auto);gap:1px;background:var(--line);border:1px solid var(--line)}
@@ -170,14 +167,19 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
   <section class="s" id="land">
     <div class="wrap">
       <div class="landhead">
-        <h2>The land</h2>
-        <p class="it">67 miles north of San Francisco, an orchard meadow held inside the redwoods.</p>
+        <h2>Where the orchard meets the redwoods</h2>
+        <p class="it">Just 67 miles north of San Francisco, with seasonal creeks running through it and a quiet lake at its heart.</p>
       </div>
-      <figure class="landfig">
-        <img src="images/land-lake.jpg" alt="Two white chairs at the end of the dock on the lake, with redwoods reflected in the water" loading="lazy">
-        <figcaption class="it">Seasonal creeks run through it, and a quiet lake sits at its heart.</figcaption>
-      </figure>
-      <p class="landstory"><span class="hl">70 acres</span> of west Sonoma, where <span class="hl">400+ fruit trees</span> and <span class="hl">128 varieties</span> grow, from Gravenstein apples to persimmons. <span class="hl">50+ organic crops</span> fill the vegetable gardens, <span class="hl">200+ flower species</span> bloom in the zen gardens and <span class="hl">30+ exotic plants</span> live in the greenhouse. <span class="hl">3.5 miles</span> of trails wind through the redwoods, and <span class="hl">50+ bird species</span> call it home.</p>
+      <div class="lnums">
+        <div class="ln"><b>70</b><span class="l">acres</span><span class="d">in west Sonoma</span></div>
+        <div class="ln"><b>400+</b><span class="l">fruit trees</span><span class="d">across the orchards</span></div>
+        <div class="ln"><b>128</b><span class="l">fruit varieties</span><span class="d">from apples to persimmons</span></div>
+        <div class="ln"><b>50+</b><span class="l">organic crops</span><span class="d">in the vegetable gardens</span></div>
+        <div class="ln"><b>3.5</b><span class="l">miles of trails</span><span class="d">through the redwoods</span></div>
+        <div class="ln"><b>200+</b><span class="l">flower species</span><span class="d">in the zen gardens</span></div>
+        <div class="ln"><b>30+</b><span class="l">exotic plants</span><span class="d">in the greenhouse</span></div>
+        <div class="ln"><b>50+</b><span class="l">bird species</span><span class="d">at home on the land</span></div>
+      </div>
     </div>
   </section>
 
