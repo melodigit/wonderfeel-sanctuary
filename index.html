@@ -68,18 +68,19 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 @media (max-width:560px){.ln{width:calc(50% - 12px)}.lrow{gap:28px 16px}}
 
 /* a day */
-.day{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(clamp(230px,20vw,290px),auto);gap:1px;background:var(--line);border:1px solid var(--line)}
-.day .intro{background:var(--ground);padding:clamp(20px,2.4vw,32px);display:flex;align-items:flex-end}
-.day .intro h2{font-weight:800;font-size:clamp(24px,2.4vw,32px);line-height:1.08;letter-spacing:-.025em}
-.tile{position:relative;overflow:hidden;background:#3a4130;color:#FFFFFF;margin:0}
+.dayhead{text-align:center;max-width:780px;margin:0 auto clamp(32px,4vw,52px)}
+.dayhead h2{font-weight:800;font-size:clamp(30px,3.8vw,48px);line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
+.day{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.tile{position:relative;overflow:hidden;background:#3a4130;color:#FFFFFF;margin:0;grid-column:span 3;height:clamp(240px,22vw,300px)}
+.tile:nth-child(-n+3){grid-column:span 4;height:clamp(280px,27vw,380px)}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .tile:hover img{transform:scale(1.04)}
-.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.62) 100%)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.6) 100%)}
 .tile figcaption{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:16px 18px 18px}
 .tile b{display:block;font-size:17px;font-weight:700;letter-spacing:-.01em}
-.tile span{display:block;margin-top:3px;font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.88)}
-@media (max-width:1000px){.day .tile:last-child{grid-column:1/-1}.day{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}.tile{min-height:230px}.day .intro{grid-column:1/-1;padding-block:28px}}
-@media (max-width:479px){.day{grid-template-columns:minmax(0,1fr)}.tile{min-height:250px}}
+.tile span{display:block;margin-top:3px;font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.9)}
+@media (max-width:900px){.day{grid-template-columns:repeat(2,minmax(0,1fr))}.tile,.tile:nth-child(-n+3){grid-column:span 1;height:240px}.tile:first-child{grid-column:1/-1;height:300px}}
+@media (max-width:520px){.day{grid-template-columns:minmax(0,1fr)}.tile,.tile:nth-child(-n+3),.tile:first-child{grid-column:auto;height:250px}}
 
 /* harvest */
 .harvest{background:var(--paper);border-block:1px solid var(--line)}
@@ -188,8 +189,8 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 
   <section class="s" id="day" style="padding-top:0">
     <div class="wrap">
+      <div class="dayhead"><h2>A day built to naturally support your wellbeing and boost your creativity.</h2></div>
       <div class="day">
-        <div class="intro"><h2>A day built to naturally support your wellbeing and boost your creativity.</h2></div>
         <figure class="tile" ><img src="images/fresh-air.jpg" alt="A golden willow and autumn shrubs under a clear sky" loading="lazy"><figcaption><b>Fresh air and sun</b><span>Clean forest air and Sonoma sun most of the year</span></figcaption></figure>
         <figure class="tile" ><img src="images/biodiversity.jpg" alt="Honeybees on weathered wood" loading="lazy"><figcaption><b>Biodiversity</b><span>Bees, birds, wildflowers and redwood forest</span></figcaption></figure>
         <figure class="tile" ><img src="images/move.jpg" alt="The lake surrounded by redwoods, seen from above" loading="lazy"><figcaption><b>Move naturally</b><span>Forest trails to walk and run, and a lake to swim in</span></figcaption></figure>
