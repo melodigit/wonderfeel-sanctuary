@@ -262,12 +262,13 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 
 /* View switch */
 .views{display:flex;gap:6px;margin:0 0 16px;flex-wrap:wrap}
-.mstrip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin:30px 0 0}
-.mstrip button{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:11px 0;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:1px;min-width:0}
-.mstrip button b{font-size:14px;font-weight:700;letter-spacing:.01em}
-.mstrip button small{font-size:10px;font-weight:600;letter-spacing:.08em;opacity:.75;min-height:1.3em}
-.mstrip button[aria-pressed="true"]{background:var(--coral);border-color:var(--coral);color:#FFFFFF}
-@media (max-width:620px){.mstrip{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.mstrip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px;margin:30px 0 0;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+.mstrip button{border:0;background:transparent;border-radius:999px;padding:10px 0;color:var(--muted);display:flex;justify-content:center;min-width:0;cursor:pointer;transition:background .15s ease,color .15s ease}
+.mstrip button b{font-size:13.5px;font-weight:600;letter-spacing:.02em}
+.mstrip button:hover{color:var(--ink);background:var(--ground)}
+.mstrip button[aria-pressed="true"]{background:var(--coral);color:#FFFFFF}
+.mstrip button[aria-pressed="true"] b{font-weight:700}
+@media (max-width:620px){.mstrip{grid-template-columns:repeat(6,minmax(0,1fr));border-radius:22px;row-gap:4px}}
 .views a{font-size:13px;font-weight:700;letter-spacing:.02em;text-decoration:none;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--paper)}
 .views a[aria-current="page"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
 /* Harvest and plant rows */
@@ -383,7 +384,6 @@ button.mrow:hover{background:var(--paper)}
   <img src="../images/harvest-hero.jpg" alt="Baskets of apples and pears from the orchard, with lavender and fresh-cut flowers">
   <div class="winner">
     <h1>Harvest <em>in the<br>Longevity Zone</em></h1>
-    <p class="wsub">How Wonderfeel Sanctuary nourishes you every month.</p>
   </div>
 </section>
 <div class="wrap">
