@@ -36,7 +36,7 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance}
 .mark{color:#FFFFFF;text-decoration:none;font-weight:800;font-size:15px;letter-spacing:-.01em}
 .nav{display:flex;gap:26px}
 .nav a{color:rgba(255,255,255,.88);text-decoration:none;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
-.nav a:hover{color:#FFFFFF}
+.nav a:hover,.nav a:focus-visible,.nav a.on{color:#FFFFFF;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
 @media (max-width:719px){.nav{display:none}}
 
 /* hero */
@@ -145,6 +145,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 .hmonth .hgrid{margin-top:clamp(36px,5vw,56px)}
 .teaser{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 40px;align-items:end;border-top:1px solid var(--ink);padding-top:28px}
 .teaser h2{font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-.035em}
+.teaser h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em}
 .teaser p{margin:12px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.9vw,22px);color:var(--muted);max-width:48ch}
 .teaser a.btn{display:inline-block;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;white-space:nowrap;transition:background .2s ease,color .2s ease}
 .teaser a.btn:hover{background:var(--ink);color:var(--ground)}
@@ -209,8 +210,8 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <div class="wrap">
       <div class="teaser">
         <div>
-          <h2>Harvest in the<br>Longevity Zone</h2>
-          <p>How the land nourishes you every month.</p>
+          <h2>Harvest <em>in the<br>Longevity Zone</em></h2>
+          <p>How Wonderfeel Sanctuary nourishes you every month.</p>
         </div>
         <a class="btn" href="harvest/">See this month's harvest →</a>
       </div>
@@ -235,5 +236,16 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <small>© <span id="yr">2026</span> Wonderfeel Sanctuary</small>
   </div>
 </footer>
+<script>
+(function(){try{
+  const links=[...document.querySelectorAll('.nav a[href^="#"]')];
+  const map=new Map(links.map(a=>[a.getAttribute("href").slice(1),a]));
+  const set=id=>links.forEach(a=>a.classList.toggle("on",a===map.get(id)));
+  links.forEach(a=>a.addEventListener("click",()=>set(a.getAttribute("href").slice(1))));
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)set(e.target.id)})},{rootMargin:"-45% 0px -50% 0px"});
+  map.forEach((a,id)=>{const el=document.getElementById(id);if(el)io.observe(el)});
+  new IntersectionObserver(es=>{if(es[0].isIntersecting)set("")},{threshold:.6}).observe(document.querySelector(".hero"));
+}catch(_){}})();
+</script>
 </body>
 </html>
