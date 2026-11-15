@@ -58,6 +58,7 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 
 /* Weather */
 .weather{margin-top:44px}
+.mstrip+.weather{margin-top:36px}
 .wtext{min-width:0}
 /* One scale for section headings and their intro lines */
 .sec-h,.wtext .about,.health h2,.legend h2{font-weight:800;font-size:clamp(26px,3.2vw,32px);letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin:0;text-wrap:balance}
@@ -262,7 +263,7 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 
 /* View switch */
 .views{display:flex;gap:6px;margin:0 0 16px;flex-wrap:wrap}
-.mstrip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px;margin:30px 0 0;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+.mstrip{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px;margin:32px 0 0;padding:5px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
 .mstrip button{border:0;background:transparent;border-radius:999px;padding:10px 0;color:var(--muted);display:flex;justify-content:center;min-width:0;cursor:pointer;transition:background .15s ease,color .15s ease}
 .mstrip button b{font-size:13.5px;font-weight:600;letter-spacing:.02em}
 .mstrip button:hover{color:var(--ink);background:var(--ground)}
@@ -365,7 +366,7 @@ button.mrow:hover{background:var(--paper)}
 .whero{position:relative;min-height:min(74svh,680px);display:flex;align-items:flex-end;color:#FFFFFF;overflow:hidden;background:#2b3021}
 .whero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%}
 .whero+.wrap{padding-top:0}
-.whero+.wrap .weather{margin-top:clamp(28px,3.6vw,40px)}
+.whero+.wrap .mstrip{margin-top:clamp(24px,3vw,36px)}
 .whero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,12,.45) 0%,rgba(15,18,12,.08) 28%,rgba(15,18,12,.18) 55%,rgba(15,18,12,.66) 100%)}
 .whero .winner{position:relative;z-index:1;width:100%;padding-bottom:clamp(40px,8vh,80px)}
 .weyebrow{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#FFFFFF}
@@ -391,13 +392,13 @@ button.mrow:hover{background:var(--paper)}
   <div id="vMonth">
 
 
+  <div class="mstrip" id="hstrip" role="group" aria-label="Choose a month"></div>
   <section class="weather" aria-label="This month on the land">
     <div class="wtext">
       <h2 class="about" id="wAbout"></h2>
       <p id="wText"></p>
     </div>
   </section>
-  <div class="mstrip" id="hstrip" role="group" aria-label="Choose a month"></div>
 
   <section class="health" aria-labelledby="hTitle">
     <h2 id="hTitle">How the Sanctuary nourishes you in November</h2>
@@ -438,18 +439,18 @@ let ben="All";
 const STATUS={here:"We have it",plan:"Planting now (not in yet)",wish:"Wish list"};
 // Typical west Sonoma County climate (approximate). [highF, lowF, rainIn, rainDays, frost, about, text]
 const W=[
- [58,37,7,"about 12","Likely","Cold, wet and quiet.","The wettest month. Growth slows right down. Harvest winter greens and citrus, prune fruit trees and roses while they sleep, and plant bare-root trees on dry days."],
- [61,38,6.5,"about 11","Some nights","Late winter, first blossoms.","Still rainy, with the first almond and plum blossom. Last call for bare-root planting and dormant pruning. Start tomato and pepper seeds indoors at the end of the month."],
- [64,40,5,"about 9","Rare","Spring wakes up.","Rains taper and the soil warms. Sow peas, greens and roots outside. Asparagus spears appear and the orchard blooms."],
- [68,42,2,"about 5","Very rare","Mild, green and bright.","Wildflowers and fast growth. Plant the last cool crops and, at the end of the month, the first tomatoes. Strawberries begin."],
- [73,45,1,"about 2","None","The dry season begins.","Rain mostly stops, so turn on drip irrigation. Plant summer vegetables, basil and flowers. Apricots and cherries ripen."],
- [78,49,0.3,"under 1","None","Warm, dry and long days.","Garlic and onions come out of the ground. Mulch beds to hold moisture. Berries, plums and the first zucchini."],
- [81,51,0,"almost none","None","Hot days, foggy mornings.","Peak summer. Water deeply and early. Peaches, figs, tomatoes and cucumbers. Gravensteins ripen late in the month."],
- [81,51,0.1,"almost none","None","Peak harvest heat.","The busiest picking month. Start fall seedlings (broccoli, kale, cabbage) in the shade. Lilies, sedum and canna in bloom."],
- [81,49,0.3,"under 1","None","Golden, warm and calm.","Often the warmest, clearest weather of the year. Apples, pears and grapes. Plant fall greens and roots as nights cool."],
- [75,45,1.8,"about 3","None","First rains, best planting.","One of the best months to plant: warm soil plus the first rain. Sow favas, peas, greens and garlic. Persimmons begin."],
- [65,40,4.5,"about 8","Possible late in the month","A month to nourish and restore.","The first real rain arrives. The hills turn green, the creeks run and the redwoods smell of wet earth. Persimmons, kiwis and the first mandarins ripen, full of vitamin C, and the new olive oil is pressed. Evenings come early, dinners grow slower and sleep grows deeper."],
- [57,36,6.5,"about 11","Likely","Short days, cold nights.","Growth is slow. Bare-root season opens for fruit trees, berries and roses. Spray peaches for leaf curl. Mostly harvest: citrus, greens, persimmons."]
+ [58,37,7,"about 12","Likely","Cold, wet and quiet.","The wettest month, and the land rests. Rain fills the creeks and mist hangs in the redwoods. Lemons, mandarins and winter greens are at their sweetest, bright and warming food for the coldest weeks of the year."],
+ [61,38,6.5,"about 11","Some nights","Late winter, first blossoms.","The rain keeps falling, but the first plum blossom opens over the orchard and the days slowly stretch. Citrus is still heavy on the trees, greens fill the beds, and the whole land feels like it is waking up."],
+ [64,40,5,"about 9","Rare","Spring wakes up.","The rains ease and the soil warms. The orchard bursts into bloom, the bees return to the flowers and the first asparagus spears push up. Tender greens and herbs come back to the table, fresh and full of life."],
+ [68,42,2,"about 5","Very rare","Mild, green and bright.","Long, mild days and green hills everywhere you look. Wildflowers run through the meadow, peas and asparagus are ready, and the first strawberries ripen. A month for walking the trails and eating outdoors."],
+ [73,45,1,"about 2","None","The dry season begins.","The rain stops and the hills turn golden at the edges. Strawberries, cherries and the first apricots ripen, salads come straight from the beds, and evenings by the lake stay light and warm until late."],
+ [78,49,0.3,"under 1","None","Warm, dry and long days.","The longest days of the year. Berries and plums ripen in the sun, the first summer squash arrives, and garlic and onions come out of the ground. Mornings start cool and foggy, and afternoons are made for the lake."],
+ [81,51,0,"almost none","None","Hot days, foggy mornings.","Fog rolls in from the coast at dawn and burns off into hot, golden days. Peaches, figs and tomatoes ripen, the herbs smell strongest in the heat, and the first Gravenstein apples appear late in the month."],
+ [81,51,0.1,"almost none","None","Peak harvest heat.","The fullest month of the year. Stone fruit, tomatoes, berries and herbs come in by the armful, lilies and sedum bloom, and long warm evenings are made for slow dinners under the trees with everything just picked."],
+ [81,49,0.3,"under 1","None","Golden, warm and calm.","Often the warmest, clearest weather of the year. Apples, pears and grapes ripen in the orchard, the garden is still full of summer, and by late afternoon the light turns soft and golden over the meadow."],
+ [75,45,1.8,"about 3","None","First rains, best planting.","The first rain wakes the dry hills and the air smells of earth again. Persimmons begin to color, apples and pears keep coming, and the first olives are picked for curing. Days are warm, and nights are cool and crisp."],
+ [65,40,4.5,"about 8","Possible late in the month","A month to nourish and restore.","The first real rain arrives. The hills turn green, the creeks run and the redwoods smell of wet earth. Persimmons, kiwis and mandarins ripen, full of vitamin C, and the new olive oil is pressed. Sleep grows deeper."],
+ [57,36,6.5,"about 11","Likely","Short days, cold nights.","The shortest days of the year, with cold nights and clear, bright mornings. Persimmons glow on bare branches, citrus ripens and winter greens fill the beds, bringing color and vitamin C to the darkest weeks."]
 ];
 const NOW=new Date().getMonth()+1;
 let month=NOW, plants=[], db=null, assets=null, canWrite=true, loaded=false;
