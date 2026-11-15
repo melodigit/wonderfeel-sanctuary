@@ -386,7 +386,7 @@ button.mrow:hover{background:var(--paper)}
   <div class="legend">
     <h2 id="tTitle">Ready to pick in November</h2>
     <span class="k-have"><i class="dot have"></i>Growing here now</span>
-    <span class="k-not"><i class="dot soon"></i>On Francisco's list</span>
+    <span class="k-not"><i class="dot soon"></i>On the planting list</span>
     <span class="k-not"><i class="dot not"></i>Wish list</span>
   </div>
 
@@ -684,7 +684,7 @@ function renderGTabs(){
 const MAP_IMG="../images/p/00aeeee3e3adb6ab9e8207c78c63f7a6.jpg";
 const AREA_SUG=["Upper orchard","Lower orchard","Berry fence","Greenhouse","Orange trees","Vegetable garden","Kiwi Gazebo","Zen garden","Lake","Main house"];
 let areas=[], areasLoaded=false, selArea=null, mapMode=null, draft=null, aEdit=false, aDel=false, drawPts=[], pickOpen=false, pickQ="", aOpen=false;
-const STL3={here:"On the land",plan:"Francisco's list",wish:"Wish list"};
+const STL3={here:"On the land",plan:"Planting list",wish:"Wish list"};
 const aKey=s=>String(s||"").toLowerCase().trim();
 const parsePts=s=>String(s||"").trim().split(/\s+/).filter(Boolean).map(t=>t.split(",").map(Number)).filter(q=>q.length===2&&q.every(isFinite));
 const ptsStr=a=>a.map(([x,y])=>`${x},${y}`).join(" ");
