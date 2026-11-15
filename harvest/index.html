@@ -59,6 +59,7 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 /* Weather */
 .weather{margin-top:44px}
 .mstrip+.weather{margin-top:36px}
+.mstrip+.mintro{margin-top:40px}
 .wtext{min-width:0}
 /* One scale for section headings and their intro lines */
 .sec-h,.wtext .about,.health h2,.legend h2{font-weight:800;font-size:clamp(26px,3.2vw,32px);letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin:0;text-wrap:balance}
@@ -78,7 +79,14 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .dot.not{border:1.5px dashed var(--muted)}
 
 /* Health from the land */
+.mintro{margin-top:36px;max-width:820px}
+.mkick{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--moss)}
+.mintro h2{margin:10px 0 0;font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.04;letter-spacing:-.032em;color:var(--ink);text-wrap:balance}
+.mintro h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.015em}
+.mtag{margin:14px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,23px);line-height:1.35;color:var(--ink)}
+.mstory{margin:10px 0 0;font-family:var(--serif);font-size:18px;line-height:1.6;color:var(--body);max-width:72ch;text-wrap:pretty}
 .health{margin-top:64px}
+.health h2 .h12{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--moss);font-size:1.18em;letter-spacing:-.02em}
 .health .sub{margin-bottom:18px}
 .hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));border-top:1px solid var(--ink);border-left:1px solid var(--line)}
 .hcard{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 16px 16px;background:none;text-align:left;border-top:0;border-left:0;min-width:0}
@@ -86,7 +94,8 @@ h1 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:
 .hcard:hover b{color:var(--pink)}
 .hcard .t{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .hcard b{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--ink)}
-.hcard .n{font-size:12px;color:var(--pink);font-weight:700;font-variant-numeric:tabular-nums}
+.hcard .n{font-size:11px;color:var(--moss);font-weight:700;letter-spacing:.08em;font-variant-numeric:tabular-nums;opacity:.8}
+.hcard.off b{color:var(--muted)}
 .hcard p{margin:6px 0 0;font-size:13px;line-height:1.45;color:var(--body)}
 .hcard p.none{color:var(--muted);font-family:var(--serif);font-style:italic}
 .hcard .later{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:12px;color:var(--muted);line-height:1.5}
@@ -393,16 +402,16 @@ button.mrow:hover{background:var(--paper)}
 
 
   <div class="mstrip" id="hstrip" role="group" aria-label="Choose a month"></div>
-  <section class="weather" aria-label="This month on the land">
-    <div class="wtext">
-      <h2 class="about" id="wAbout"></h2>
-      <p id="wText"></p>
-    </div>
+  <section class="mintro" aria-labelledby="wAbout">
+    <div class="mkick" id="wKick"></div>
+    <h2 id="wAbout">How the Sanctuary nourishes you <em>in November</em></h2>
+    <p class="mtag" id="wTag"></p>
+    <p class="mstory" id="wText"></p>
   </section>
 
   <section class="health" aria-labelledby="hTitle">
-    <h2 id="hTitle">How the Sanctuary nourishes you in November</h2>
-    <p class="sub" id="hSub">Everything here is growing on the land and ready to pick right now. Between them, they look after all 12 areas of your health. Tap one to see what helps.</p>
+    <h2 id="hTitle"><span class="h12">12</span> areas of your health, in season</h2>
+    <p class="sub" id="hSub">Everything here is growing on the land and ready to pick right now. Tap one to see what helps.</p>
     <div class="hgrid" id="hgrid"></div>
   </section>
 
@@ -464,7 +473,9 @@ function strip(cur,attr){const y0=new Date().getFullYear();
 function renderMonth(){
   const w=W[month-1];
   $("#hstrip").innerHTML=strip(month,"data-hm");
-  $("#wAbout").innerHTML=`<span class="mname">${MF[month-1]}:</span> ${esc(w[5])}`;
+  $("#wKick").textContent=MF[month-1];
+  $("#wAbout").innerHTML=`How the Sanctuary nourishes you <em>in&nbsp;${MF[month-1]}</em>`;
+  $("#wTag").textContent=w[5];
   $("#wText").textContent=w[6].replace(/ (\S+)$/,"\u00a0$1");
   $("#tTitle").textContent="Ready to pick in "+MF[month-1];
 }
@@ -530,18 +541,17 @@ function renderPlant(){
 function renderBf(){$("#bf").innerHTML=`<span class="lab">Good for</span>`+["All",...BEN].map(b=>`<button type="button" data-b="${esc(b)}" aria-pressed="${b===ben}">${esc(b)}</button>`).join("")}
 function nextReady(p){for(let k=1;k<12;k++){const m=(month-1+k)%12+1;if((p.harvest||[]).includes(m))return m}return 0}
 function renderHealth(){
-  $("#hTitle").textContent="How the Sanctuary nourishes you in "+MF[month-1];
   if(!loaded){$("#hgrid").innerHTML="";return}
   const ours=plants.filter(p=>have(p)&&(p.benefits||[]).length);
   const covered=BEN.filter(b=>ours.some(p=>p.benefits.includes(b)&&(p.harvest||[]).includes(month))).length;
-  $("#hSub").textContent=`Everything here is growing on the land and ready to pick right now. Between them, they look after ${covered===BEN.length?"all 12":covered+" of the 12"} areas of your health. Tap one to see what helps.`;
-  $("#hgrid").innerHTML=BEN.map(b=>{
+  $("#hTitle").innerHTML=covered===BEN.length?`All <span class="h12">12</span> areas of your health, in season`:`<span class="h12">${covered}</span> of 12 areas of your health, in season`;
+  $("#hgrid").innerHTML=BEN.map((b,bi)=>{
     const tagged=ours.filter(p=>p.benefits.includes(b));
     const now=tagged.filter(p=>(p.harvest||[]).includes(month)).map(p=>p.name).sort();
     const later=tagged.filter(p=>!(p.harvest||[]).includes(month)).map(p=>({n:p.name,m:nextReady(p)})).filter(x=>x.m)
       .sort((a,b2)=>((a.m-month+12)%12)-((b2.m-month+12)%12)||a.n.localeCompare(b2.n));
     const laterTxt=later.slice(0,8).map(x=>`${esc(x.n)} (${M[x.m-1]})`).join(", ")+(later.length>8?` and ${later.length-8} more`:"");
-    return `<button type="button" class="hcard" data-b="${esc(b)}"><span class="t"><b>${esc(b)}</b></span>`+
+    return `<button type="button" class="hcard${now.length?"":" off"}" data-b="${esc(b)}"><span class="t"><b>${esc(b)}</b><span class="n">${String(bi+1).padStart(2,"0")}</span></span>`+
       (now.length?`<p>${esc(now.join(", "))}</p>`:`<p class="none">Nothing ready in ${MF[month-1]}</p>`)+`</button>`;
   }).join("");
 }
