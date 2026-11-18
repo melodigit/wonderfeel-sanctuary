@@ -244,8 +244,8 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <img src="../images/vision/beds-aerial.jpg" alt="Aerial view of the berry cage, raised beds and pergola among the orchards">
     <div class="wrap">
       <div class="eyebrow">The Map</div>
-      <h1>Where everything <em class="it">grows</em></h1>
-      <p class="sub it">Seventy acres of orchards, gardens, forest and a lake,<br>mapped by what grows where.</p>
+      <h1>A living map, <em class="it">always in progress</em></h1>
+      <p class="sub it">From plants to points of inspiration,<br>from walking trails to places to rest.</p>
     </div>
   </section>
 
@@ -253,8 +253,8 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
     <div class="wrap">
       <div class="mintro2">
         <div class="kicker">Explore the land</div>
-        <h2>Every orchard, <em>every bed</em></h2>
-        <p>Tap an area on the map, or pick one from the list, to see what grows there and how many trees it holds.</p>
+        <h2>Thousands of <em>plants</em></h2>
+        <p>We have made it our life's work to get to know every one of them, and to introduce them to you. Every season we ask the same question: how can the land become more nourishing, for itself and for everyone who comes here? Tap an area on the map, or pick one from the list, to see what grows there.</p>
       </div>
       <div class="mgrid">
         <div>
@@ -287,8 +287,8 @@ const A=D.areas.map((a,i)=>({...a,id:"a"+i}));
 const N=D.names;
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const pts=a=>a.pts?a.pts.trim().split(/\s+/).map(t=>t.split(",").map(Number)):[];
-const ORCH=/Orchard|Grove|Backyard/,BUILD=/House|Greenhouse|Gazebo|Pergola|Lake/;
-const grp=a=>ORCH.test(a.name)?"Orchards and groves":BUILD.test(a.name)?"Houses, greenhouse and water":"Gardens and beds";
+const ORCH=/Orchard|Grove|Backyard/,REST=/House|Gazebo|Pergola|Lake|Zen/;
+const grp=a=>ORCH.test(a.name)?"Orchards and groves":REST.test(a.name)?"Places to move and rest":"Gardens and beds";
 let sel=null;
 function stats(a){const c=a.counts||{},g=a.groups||{};let n=0,unc=0;a.plants.forEach(p=>{const k=Math.round(+c[p]||0);if(k>0)n+=k;else if(!Object.keys(g).some(x=>(N[p]||"").startsWith(x)))unc++});Object.values(g).forEach(v=>n+=v);
   const trees=a.plants.length&&a.plants.every(p=>!/berry|berr|grape|kiwi|lettuce|tomato|herb|cilantro|parsley|garlic|onion|chives|mint|thyme|oregano|sage|rosemary|lavender|asparagus|artichoke|leek|potato|pepper|horseradish|tomatillo|orchid|air|succulent|banana/i.test(N[p]||p));
@@ -304,11 +304,11 @@ function render(){
   pins.querySelectorAll(".mlab").forEach(l=>l.classList.toggle("on",l.dataset.l===sel));
   if(sel){const a=A.find(x=>x.id===sel),c=a.counts||{};
     panel.innerHTML=`<div class="kicker">${esc(grp(a))}</div><h3>${esc(a.name)}</h3>${line(a)?`<p class="mstat">${line(a)}</p>`:""}`+
-      (a.plants.length?`<div class="mchips">${a.plants.map(p=>`<span>${esc(N[p]||p)}${c[p]?`<b>${c[p]}</b>`:""}</span>`).join("")}${a.groups&&a.groups.Apple?`<span>All apples<b>${a.groups.Apple}</b></span>`:""}</div>`:`<p class="mempty">A place to rest, walk and gather.</p>`)+
+      (a.plants.length?`<div class="mchips">${a.plants.map(p=>`<span>${esc(N[p]||p)}${c[p]?`<b>${c[p]}</b>`:""}</span>`).join("")}${a.groups&&a.groups.Apple?`<span>All apples<b>${a.groups.Apple}</b></span>`:""}</div>`:`<p class="mempty">A place to move, rest and be inspired.</p>`)+
       `<button type="button" class="mback" data-back>← All areas</button>`;
   }else{
     const groups={};A.slice().sort((x,y)=>x.name.localeCompare(y.name)).forEach(a=>{(groups[grp(a)]=groups[grp(a)]||[]).push(a)});
-    panel.innerHTML=`<div class="kicker">${A.length} areas</div><h3>The land</h3><div class="mlist">`+["Orchards and groves","Gardens and beds","Houses, greenhouse and water"].filter(g=>groups[g]).map(g=>`<div class="mgrp">${g}</div>`+groups[g].map(a=>`<button type="button" class="mrow" data-a="${a.id}">${esc(a.name)}<small>${line(a)}</small></button>`).join("")).join("")+`</div>`;
+    panel.innerHTML=`<div class="kicker">${A.length} areas</div><h3>The land</h3><div class="mlist">`+["Orchards and groves","Gardens and beds","Places to move and rest"].filter(g=>groups[g]).map(g=>`<div class="mgrp">${g}</div>`+groups[g].map(a=>`<button type="button" class="mrow" data-a="${a.id}">${esc(a.name)}<small>${line(a)}</small></button>`).join("")).join("")+`</div>`;
   }
 }
 document.addEventListener("click",e=>{const b=e.target.closest("[data-back]");if(b){sel=null;render();return}
