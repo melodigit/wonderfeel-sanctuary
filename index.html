@@ -40,7 +40,7 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance}
 @media (max-width:719px){.nav{display:none}}
 
 /* hero */
-.hero{position:relative;min-height:min(92svh,860px);display:flex;align-items:flex-end;color:#FFFFFF;overflow:hidden;background:#2b3021}
+.hero{position:relative;min-height:min(92svh,860px);display:flex;align-items:flex-end;color:#FFFFFF;overflow:hidden;background:#2b2b26}
 .hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,18,12,.45) 0%,rgba(15,18,12,.05) 30%,rgba(15,18,12,.1) 55%,rgba(15,18,12,.62) 100%)}
 .hero .wrap{position:relative;z-index:1;width:100%;padding-block:0 clamp(44px,9vh,96px)}
@@ -63,12 +63,12 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .landhead{text-align:center;max-width:980px;margin:0 auto clamp(40px,5vw,64px)}
 .landhead h2{max-width:760px;margin-inline:auto}
 .landhead h2{font-weight:800;font-size:clamp(30px,3.8vw,48px);line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
-.landhead .it{margin:16px auto 0;font-size:clamp(18px,1.9vw,21px);line-height:1.5;color:var(--muted);max-width:80ch;text-wrap:balance}
+.landhead .it{margin:16px auto 0;font-family:var(--display);font-style:normal;font-size:clamp(17px,1.6vw,19px);line-height:1.6;color:var(--body);max-width:80ch;text-wrap:balance}
 .lrow{display:flex;justify-content:center;flex-wrap:wrap;gap:clamp(20px,3vw,44px)}
 .lrow+.lrow{margin-top:clamp(28px,3.5vw,44px)}
 .ln{width:196px;text-align:center}
 .ln b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(30px,3vw,38px);line-height:1;letter-spacing:-.03em;color:var(--ink)}
-.ln .l{display:block;margin-top:10px;font-size:15px;font-weight:600;color:var(--ink)}
+.ln .l{display:block;margin-top:4px;font-size:15px;font-weight:600;color:var(--ink)}
 .ln .d{display:block;margin-top:2px;font-family:var(--serif);font-style:italic;font-size:15.5px;line-height:1.4;color:var(--muted)}
 @media (max-width:560px){.ln{width:calc(50% - 12px)}.lrow{gap:28px 16px}}
 
@@ -76,7 +76,7 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 .dayhead{text-align:center;max-width:1040px;margin:0 auto clamp(32px,4vw,52px)}
 .dayhead h2{font-weight:800;font-size:clamp(30px,3.8vw,48px);line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
 .day{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
-.tile{position:relative;overflow:hidden;background:#3a4130;color:#FFFFFF;margin:0;grid-column:span 3;height:clamp(240px,22vw,300px)}
+.tile{position:relative;overflow:hidden;background:#2b2b26;color:#FFFFFF;margin:0;grid-column:span 3;height:clamp(240px,22vw,300px)}
 .tile:nth-child(-n+3){grid-column:span 4;height:clamp(280px,27vw,380px)}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .tile:hover img{transform:scale(1.04)}
@@ -92,12 +92,12 @@ section.s{padding-block:clamp(72px,11vw,140px)}
 
 /* harvest */
 .harvest{background:var(--paper);border-block:1px solid var(--line)}
-.mband{position:relative;min-height:clamp(340px,40vw,520px);display:flex;align-items:flex-end;overflow:hidden;background:#3a4130;color:#FFFFFF}
+.mband{position:relative;min-height:clamp(340px,40vw,520px);display:flex;align-items:flex-end;overflow:hidden;background:#2b2b26;color:#FFFFFF}
 .mband>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
 .mband::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,18,12,.72) 0%,rgba(15,18,12,.38) 55%,rgba(15,18,12,.08) 100%)}
 .mband-in{position:relative;z-index:1;padding:clamp(24px,4vw,52px);max-width:640px}
 .mhead{font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.06;letter-spacing:-.03em;color:#FFFFFF;margin:0;text-wrap:balance}
-.mtext{margin:14px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:rgba(255,255,255,.94)}
+.mtext{margin:14px 0 0;font-family:var(--display);font-style:normal;font-size:clamp(18px,1.8vw,21px);line-height:1.5;color:rgba(255,255,255,.94)}
 .hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));border-top:1px solid var(--ink);border-left:1px solid var(--line);margin-top:clamp(32px,4vw,48px)}
 .hcard{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 18px 18px;min-width:0}
 .hcard h3{font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
@@ -135,7 +135,7 @@ dialog::backdrop{background:rgba(29,29,27,.5)}
 footer{padding-block:56px 48px}
 footer .wrap{display:flex;justify-content:space-between;gap:20px 40px;flex-wrap:wrap;align-items:flex-end}
 footer .fm{font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink)}
-footer .fl{margin:6px 0 0;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--muted)}
+footer .fl{margin:6px 0 0;font-family:var(--display);font-style:normal;font-size:17px;color:var(--muted)}
 footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 
 .top .wrap.sub{justify-content:space-between}
@@ -152,7 +152,7 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 .teaser{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 40px;align-items:end;border-top:1px solid var(--ink);padding-top:28px}
 .teaser h2{font-weight:800;font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-.035em}
 .teaser h2 em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.02em}
-.teaser p{margin:12px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(18px,1.9vw,22px);color:var(--muted);max-width:48ch}
+.teaser p{margin:12px 0 0;font-family:var(--display);font-style:normal;font-size:clamp(17px,1.6vw,19px);line-height:1.6;color:var(--body);max-width:56ch}
 .teaser a.btn{display:inline-block;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;font-weight:600;font-size:15px;padding:12px 22px;border-radius:999px;white-space:nowrap;transition:background .2s ease,color .2s ease}
 .teaser a.btn:hover{background:var(--ink);color:var(--ground)}
 @media (max-width:640px){.teaser{grid-template-columns:minmax(0,1fr)}}
@@ -198,13 +198,13 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
 <body>
 <header class="top">
   <div class="wrap">
-    <nav class="nav" aria-label="Sections"><a href="harvest/">The Harvest</a><a href="contact/">The Club</a><a href="#film">The Film</a></nav>
+    <nav class="nav" aria-label="Sections"><a href="vision/">The Vision</a><a href="harvest/">The Harvest</a><a href="contact/">The Club</a></nav>
   </div>
 </header>
 
 <main id="top">
   <section class="hero" aria-label="Wonderfeel Sanctuary">
-    <img src="images/hero-aerial.jpg" alt="Aerial view of the Sanctuary: an open meadow of fruit trees and gardens inside a redwood forest">
+    <img src="images/hero-aerial.jpg" alt="Aerial view of Wonderfeel Sanctuary: an open meadow of fruit trees and gardens inside a redwood forest">
     <div class="wrap">
       <div class="eyebrow">The Longevity Zone</div>
       <h1>Wonderfeel Sanctuary</h1>
@@ -237,12 +237,12 @@ footer small{font-size:12.5px;color:var(--muted);line-height:1.6}
       <div class="dayhead"><h2>A day built to naturally support your wellbeing and boost your creativity.</h2></div>
       <div class="day">
         <figure class="tile" ><img src="images/fresh-air.jpg" alt="A golden willow and autumn shrubs under a clear sky" loading="lazy"><figcaption><b>Fresh air and sun</b><span>Clean forest air and Sonoma sun most of the year</span></figcaption></figure>
-        <figure class="tile" ><img src="images/biodiversity.jpg" alt="Honeybees on weathered wood" loading="lazy"><figcaption><b>Biodiversity</b><span>Bees, birds, wildflowers and redwood forest</span></figcaption></figure>
-        <figure class="tile" ><img src="images/move.jpg" alt="The lake surrounded by redwoods, seen from above" loading="lazy"><figcaption><b>Move naturally</b><span>Forest trails to walk and run, and a lake to swim in</span></figcaption></figure>
+        <figure class="tile" ><img src="images/biodiversity.jpg" alt="Honeybees on weathered wood" loading="lazy"><figcaption><b>Biodiversity</b><span>Bees, birds, wildflowers, orchards, groves and redwood forest</span></figcaption></figure>
+        <figure class="tile" ><img src="images/move.jpg" alt="The lake surrounded by redwoods, seen from above" loading="lazy"><figcaption><b>Nature activity</b><span>Forest trails to walk and run, and a lake to swim in</span></figcaption></figure>
         <figure class="tile" ><img src="images/eat.jpg" alt="The greenhouse and vegetable gardens from above" loading="lazy"><figcaption><b>Eat from the land</b><span>Fruit from the orchard, organic crops, fresh herbs</span></figcaption></figure>
         <figure class="tile" ><img src="images/create.jpg" alt="A wooden lounge chair in a quiet garden corner" loading="lazy"><figcaption><b>Create in nature</b><span>Spots in nature for brainstorming and reflection</span></figcaption></figure>
         <figure class="tile" ><img src="images/slow-down.jpg" alt="A smiling stone Buddha among flowering branches" loading="lazy"><figcaption><b>Slow down</b><span>Zen gardens, forest meditation spots, the lake</span></figcaption></figure>
-        <a class="tile tlink" href="contact/"><img src="images/community.jpg" alt="The red barn and gathering area in the forest" loading="lazy"><figcaption><b>Community</b><span>Creative collabs, harvest gatherings, shared meals</span><em class="go">The Club →</em></figcaption></a>
+        <figure class="tile"><img src="images/community.jpg" alt="The red barn and gathering area in the forest" loading="lazy"><figcaption><b>Community</b><span>Creative collabs, harvest gatherings, shared meals</span></figcaption></figure>
       </div>
     </div>
   </section>
